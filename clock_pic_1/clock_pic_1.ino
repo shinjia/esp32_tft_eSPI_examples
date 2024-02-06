@@ -1,4 +1,4 @@
-/* clock_pic  by Shinjia
+/* clock_pic_1  by Shinjia
   - v0.1  2024/02/06
 */
 
