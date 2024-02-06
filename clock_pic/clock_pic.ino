@@ -48,6 +48,7 @@ TFT_eSPI tft = TFT_eSPI();
 int hh=0, mm=0, ss=0;  // 時分秒
 int hh0=-1, mm0=-1, ss0=-1;  // 保留前次畫圖時的數值 (初始值必須設為-1)
 
+
 void draw_clock_picture() {
   // get each digit number of hh, mm, ss
 
@@ -58,76 +59,69 @@ void draw_clock_picture() {
   int s1 = int(ss/10);
   int s2 = ss % 10;
 
-  Serial.print(h1); Serial.print("\t");
-  Serial.print(h2); Serial.print("\t");
-  Serial.print(m1); Serial.print("\t");
-  Serial.print(m2); Serial.print("\t");
-  Serial.print(s1); Serial.print("\t");
-  Serial.print(s2); Serial.println();
-
   switch(h1) {
-    case 0: tft.pushImage(  0, 28, 64, 64, num0); break;
-    case 1: tft.pushImage(  0, 28, 64, 64, num1); break;
-    case 2: tft.pushImage(  0, 28, 64, 64, num2); break;
-    case 3: tft.pushImage(  0, 28, 64, 64, num3); break;
-    case 4: tft.pushImage(  0, 28, 64, 64, num4); break;
-    case 5: tft.pushImage(  0, 28, 64, 64, num5); break;
-    case 6: tft.pushImage(  0, 28, 64, 64, num6); break;
-    case 7: tft.pushImage(  0, 28, 64, 64, num7); break;
-    case 8: tft.pushImage(  0, 28, 64, 64, num8); break;
-    case 9: tft.pushImage(  0, 28, 64, 64, num9); break;
+    case 0: tft.pushImage( 20, 28, 64, 64, num0); break;
+    case 1: tft.pushImage( 20, 28, 64, 64, num1); break;
+    case 2: tft.pushImage( 20, 28, 64, 64, num2); break;
+    case 3: tft.pushImage( 20, 28, 64, 64, num3); break;
+    case 4: tft.pushImage( 20, 28, 64, 64, num4); break;
+    case 5: tft.pushImage( 20, 28, 64, 64, num5); break;
+    case 6: tft.pushImage( 20, 28, 64, 64, num6); break;
+    case 7: tft.pushImage( 20, 28, 64, 64, num7); break;
+    case 8: tft.pushImage( 20, 28, 64, 64, num8); break;
+    case 9: tft.pushImage( 20, 28, 64, 64, num9); break;
   }
 
   switch(h2) {
-    case 0: tft.pushImage( 64, 28, 64, 64, num0); break;
-    case 1: tft.pushImage( 64, 28, 64, 64, num1); break;
-    case 2: tft.pushImage( 64, 28, 64, 64, num2); break;
-    case 3: tft.pushImage( 64, 28, 64, 64, num3); break;
-    case 4: tft.pushImage( 64, 28, 64, 64, num4); break;
-    case 5: tft.pushImage( 64, 28, 64, 64, num5); break;
-    case 6: tft.pushImage( 64, 28, 64, 64, num6); break;
-    case 7: tft.pushImage( 64, 28, 64, 64, num7); break;
-    case 8: tft.pushImage( 64, 28, 64, 64, num8); break;
-    case 9: tft.pushImage( 64, 28, 64, 64, num9); break;
+    case 0: tft.pushImage( 84, 28, 64, 64, num0); break;
+    case 1: tft.pushImage( 84, 28, 64, 64, num1); break;
+    case 2: tft.pushImage( 84, 28, 64, 64, num2); break;
+    case 3: tft.pushImage( 84, 28, 64, 64, num3); break;
+    case 4: tft.pushImage( 84, 28, 64, 64, num4); break;
+    case 5: tft.pushImage( 84, 28, 64, 64, num5); break;
+    case 6: tft.pushImage( 84, 28, 64, 64, num6); break;
+    case 7: tft.pushImage( 84, 28, 64, 64, num7); break;
+    case 8: tft.pushImage( 84, 28, 64, 64, num8); break;
+    case 9: tft.pushImage( 84, 28, 64, 64, num9); break;
   }
 
   switch(m1) {
-    case 0: tft.pushImage(128, 28, 64, 64, num0); break;
-    case 1: tft.pushImage(128, 28, 64, 64, num1); break;
-    case 2: tft.pushImage(128, 28, 64, 64, num2); break;
-    case 3: tft.pushImage(128, 28, 64, 64, num3); break;
-    case 4: tft.pushImage(128, 28, 64, 64, num4); break;
-    case 5: tft.pushImage(128, 28, 64, 64, num5); break;
-    case 6: tft.pushImage(128, 28, 64, 64, num6); break;
-    case 7: tft.pushImage(128, 28, 64, 64, num7); break;
-    case 8: tft.pushImage(128, 28, 64, 64, num8); break;
-    case 9: tft.pushImage(128, 28, 64, 64, num9); break;
+    case 0: tft.pushImage(168, 28, 64, 64, num0); break;
+    case 1: tft.pushImage(168, 28, 64, 64, num1); break;
+    case 2: tft.pushImage(168, 28, 64, 64, num2); break;
+    case 3: tft.pushImage(168, 28, 64, 64, num3); break;
+    case 4: tft.pushImage(168, 28, 64, 64, num4); break;
+    case 5: tft.pushImage(168, 28, 64, 64, num5); break;
+    case 6: tft.pushImage(168, 28, 64, 64, num6); break;
+    case 7: tft.pushImage(168, 28, 64, 64, num7); break;
+    case 8: tft.pushImage(168, 28, 64, 64, num8); break;
+    case 9: tft.pushImage(168, 28, 64, 64, num9); break;
   }
 
   switch(m2) {
-    case 0: tft.pushImage(192, 28, 64, 64, num0); break;
-    case 1: tft.pushImage(192, 28, 64, 64, num1); break;
-    case 2: tft.pushImage(192, 28, 64, 64, num2); break;
-    case 3: tft.pushImage(192, 28, 64, 64, num3); break;
-    case 4: tft.pushImage(192, 28, 64, 64, num4); break;
-    case 5: tft.pushImage(192, 28, 64, 64, num5); break;
-    case 6: tft.pushImage(192, 28, 64, 64, num6); break;
-    case 7: tft.pushImage(192, 28, 64, 64, num7); break;
-    case 8: tft.pushImage(192, 28, 64, 64, num8); break;
-    case 9: tft.pushImage(192, 28, 64, 64, num9); break;
+    case 0: tft.pushImage(232, 28, 64, 64, num0); break;
+    case 1: tft.pushImage(232, 28, 64, 64, num1); break;
+    case 2: tft.pushImage(232, 28, 64, 64, num2); break;
+    case 3: tft.pushImage(232, 28, 64, 64, num3); break;
+    case 4: tft.pushImage(232, 28, 64, 64, num4); break;
+    case 5: tft.pushImage(232, 28, 64, 64, num5); break;
+    case 6: tft.pushImage(232, 28, 64, 64, num6); break;
+    case 7: tft.pushImage(232, 28, 64, 64, num7); break;
+    case 8: tft.pushImage(232, 28, 64, 64, num8); break;
+    case 9: tft.pushImage(232, 28, 64, 64, num9); break;
   }
   
   switch(s1) {
-    case 0: tft.pushImage(100, 140, 64, 64, num0); break;
-    case 1: tft.pushImage(100, 140, 64, 64, num1); break;
-    case 2: tft.pushImage(100, 140, 64, 64, num2); break;
-    case 3: tft.pushImage(100, 140, 64, 64, num3); break;
-    case 4: tft.pushImage(100, 140, 64, 64, num4); break;
-    case 5: tft.pushImage(100, 140, 64, 64, num5); break;
-    case 6: tft.pushImage(100, 140, 64, 64, num6); break;
-    case 7: tft.pushImage(100, 140, 64, 64, num7); break;
-    case 8: tft.pushImage(100, 140, 64, 64, num8); break;
-    case 9: tft.pushImage(100, 140, 64, 64, num9); break;
+    case 0: tft.pushImage(96, 140, 64, 64, num0); break;
+    case 1: tft.pushImage(96, 140, 64, 64, num1); break;
+    case 2: tft.pushImage(96, 140, 64, 64, num2); break;
+    case 3: tft.pushImage(96, 140, 64, 64, num3); break;
+    case 4: tft.pushImage(96, 140, 64, 64, num4); break;
+    case 5: tft.pushImage(96, 140, 64, 64, num5); break;
+    case 6: tft.pushImage(96, 140, 64, 64, num6); break;
+    case 7: tft.pushImage(96, 140, 64, 64, num7); break;
+    case 8: tft.pushImage(96, 140, 64, 64, num8); break;
+    case 9: tft.pushImage(96, 140, 64, 64, num9); break;
   }
   
   switch(s2) {
@@ -142,7 +136,9 @@ void draw_clock_picture() {
     case 8: tft.pushImage(160, 140, 64, 64, num8); break;
     case 9: tft.pushImage(160, 140, 64, 64, num9); break;
   }
+
 }
+
 
 void update_time() {
   struct tm timeinfo = rtc.getTimeStruct();
@@ -201,6 +197,7 @@ void setup() {
   tft.init();
   tft.setSwapBytes(true);  // 修正位元順序，將 RGB 轉成 BGR (for pushImage)
   tft.setRotation(3);
+  tft.fillScreen(TFT_BLUE);
 
   // Waitting for WiFi connect
   wifi_connect_tft();
@@ -208,9 +205,6 @@ void setup() {
   //init and get the time
   get_NTP_update_RTC();
 
-  // Clear
-  tft.fillScreen(TFT_BLACK);
-   
   //init and get the time
   configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
   is_get_NTP = false;
@@ -218,7 +212,9 @@ void setup() {
   // timer
   timer_next_clock = millis();
   timer_next_NTP = millis();
-    
+
+  // Clear  
+  tft.fillScreen(TFT_BLACK);
   // disconnect WiFi as it's no longer needed
   // WiFi.disconnect(true);
   // WiFi.mode(WIFI_OFF);
@@ -247,4 +243,13 @@ void loop() {
   }
 
   // Do something
+  // draw colon
+  if(millis()%1000<800) {
+    tft.fillCircle(160-3+1, 28+32-10, 6, TFT_CYAN);
+    tft.fillCircle(160-3+1, 28+32+10, 6, TFT_CYAN);
+  }
+  else {
+    tft.fillCircle(160-3+1, 28+32-10, 6, TFT_BLACK);
+    tft.fillCircle(160-3+1, 28+32+10, 6, TFT_BLACK);
+  }
 }
