@@ -242,8 +242,7 @@ void wifi_connect_tft() {
 }
 
 
-void setup()
-{
+void setup() {
   Serial.begin(115200);
 
   // TFT 先啟用

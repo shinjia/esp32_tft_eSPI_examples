@@ -265,6 +265,10 @@ void wifi_connect_tft() {
 void setup() {
   Serial.begin(115200);
 
+  // 說定 LED 顯示亮度  
+  pinMode(TFT_LED, OUTPUT);
+  analogWrite(TFT_LED, TFT_LED_BRIGHTNESS);
+  
   // TFT 先啟用
   tft.begin();
   tft.fillScreen(TFT_BLUE);   // Clear
