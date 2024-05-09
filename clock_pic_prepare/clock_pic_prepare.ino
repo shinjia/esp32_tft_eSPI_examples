@@ -1,4 +1,4 @@
-/* ten_number  by Shinjia
+/* colck_pic_prepare by Shinjia
   - v0.1  2024/02/05
 */
 
@@ -55,55 +55,55 @@ void loop(void) {
   tft.pushImage(256, 64, 64, 64, num0);
 
   switch(v1) {
-    case 0: tft.pushImage(  0, 128, 64, 64, num1); break;
-    case 1: tft.pushImage(  0, 128, 64, 64, num2); break;
-    case 2: tft.pushImage(  0, 128, 64, 64, num3); break;
-    case 3: tft.pushImage(  0, 128, 64, 64, num4); break;
-    case 4: tft.pushImage(  0, 128, 64, 64, num5); break;
-    case 5: tft.pushImage(  0, 128, 64, 64, num6); break;
-    case 6: tft.pushImage(  0, 128, 64, 64, num7); break;
-    case 7: tft.pushImage(  0, 128, 64, 64, num8); break;
-    case 8: tft.pushImage(  0, 128, 64, 64, num9); break;
-    case 9: tft.pushImage(  0, 128, 64, 64, num0); break;
+    case 0: tft.pushImage( 32, 140, 64, 64, num1); break;
+    case 1: tft.pushImage( 32, 140, 64, 64, num2); break;
+    case 2: tft.pushImage( 32, 140, 64, 64, num3); break;
+    case 3: tft.pushImage( 32, 140, 64, 64, num4); break;
+    case 4: tft.pushImage( 32, 140, 64, 64, num5); break;
+    case 5: tft.pushImage( 32, 140, 64, 64, num6); break;
+    case 6: tft.pushImage( 32, 140, 64, 64, num7); break;
+    case 7: tft.pushImage( 32, 140, 64, 64, num8); break;
+    case 8: tft.pushImage( 32, 140, 64, 64, num9); break;
+    case 9: tft.pushImage( 32, 140, 64, 64, num0); break;
   }
 
   switch(v2) {
-    case 0: tft.pushImage( 64, 128, 64, 64, num1); break;
-    case 1: tft.pushImage( 64, 128, 64, 64, num2); break;
-    case 2: tft.pushImage( 64, 128, 64, 64, num3); break;
-    case 3: tft.pushImage( 64, 128, 64, 64, num4); break;
-    case 4: tft.pushImage( 64, 128, 64, 64, num5); break;
-    case 5: tft.pushImage( 64, 128, 64, 64, num6); break;
-    case 6: tft.pushImage( 64, 128, 64, 64, num7); break;
-    case 7: tft.pushImage( 64, 128, 64, 64, num8); break;
-    case 8: tft.pushImage( 64, 128, 64, 64, num9); break;
-    case 9: tft.pushImage( 64, 128, 64, 64, num0); break;
+    case 0: tft.pushImage( 96, 140, 64, 64, num1); break;
+    case 1: tft.pushImage( 96, 140, 64, 64, num2); break;
+    case 2: tft.pushImage( 96, 140, 64, 64, num3); break;
+    case 3: tft.pushImage( 96, 140, 64, 64, num4); break;
+    case 4: tft.pushImage( 96, 140, 64, 64, num5); break;
+    case 5: tft.pushImage( 96, 140, 64, 64, num6); break;
+    case 6: tft.pushImage( 96, 140, 64, 64, num7); break;
+    case 7: tft.pushImage( 96, 140, 64, 64, num8); break;
+    case 8: tft.pushImage( 96, 140, 64, 64, num9); break;
+    case 9: tft.pushImage( 96, 140, 64, 64, num0); break;
   }
 
   switch(v3) {
-    case 0: tft.pushImage(128, 128, 64, 64, num1); break;
-    case 1: tft.pushImage(128, 128, 64, 64, num2); break;
-    case 2: tft.pushImage(128, 128, 64, 64, num3); break;
-    case 3: tft.pushImage(128, 128, 64, 64, num4); break;
-    case 4: tft.pushImage(128, 128, 64, 64, num5); break;
-    case 5: tft.pushImage(128, 128, 64, 64, num6); break;
-    case 6: tft.pushImage(128, 128, 64, 64, num7); break;
-    case 7: tft.pushImage(128, 128, 64, 64, num8); break;
-    case 8: tft.pushImage(128, 128, 64, 64, num9); break;
-    case 9: tft.pushImage(128, 128, 64, 64, num0); break;
+    case 0: tft.pushImage(160, 140, 64, 64, num1); break;
+    case 1: tft.pushImage(160, 140, 64, 64, num2); break;
+    case 2: tft.pushImage(160, 140, 64, 64, num3); break;
+    case 3: tft.pushImage(160, 140, 64, 64, num4); break;
+    case 4: tft.pushImage(160, 140, 64, 64, num5); break;
+    case 5: tft.pushImage(160, 140, 64, 64, num6); break;
+    case 6: tft.pushImage(160, 140, 64, 64, num7); break;
+    case 7: tft.pushImage(160, 140, 64, 64, num8); break;
+    case 8: tft.pushImage(160, 140, 64, 64, num9); break;
+    case 9: tft.pushImage(160, 140, 64, 64, num0); break;
   }
 
   switch(v4) {
-    case 0: tft.pushImage(192, 128, 64, 64, num1); break;
-    case 1: tft.pushImage(192, 128, 64, 64, num2); break;
-    case 2: tft.pushImage(192, 128, 64, 64, num3); break;
-    case 3: tft.pushImage(192, 128, 64, 64, num4); break;
-    case 4: tft.pushImage(192, 128, 64, 64, num5); break;
-    case 5: tft.pushImage(192, 128, 64, 64, num6); break;
-    case 6: tft.pushImage(192, 128, 64, 64, num7); break;
-    case 7: tft.pushImage(192, 128, 64, 64, num8); break;
-    case 8: tft.pushImage(192, 128, 64, 64, num9); break;
-    case 9: tft.pushImage(192, 128, 64, 64, num0); break;
+    case 0: tft.pushImage(224, 140, 64, 64, num1); break;
+    case 1: tft.pushImage(224, 140, 64, 64, num2); break;
+    case 2: tft.pushImage(224, 140, 64, 64, num3); break;
+    case 3: tft.pushImage(224, 140, 64, 64, num4); break;
+    case 4: tft.pushImage(224, 140, 64, 64, num5); break;
+    case 5: tft.pushImage(224, 140, 64, 64, num6); break;
+    case 6: tft.pushImage(224, 140, 64, 64, num7); break;
+    case 7: tft.pushImage(224, 140, 64, 64, num8); break;
+    case 8: tft.pushImage(224, 140, 64, 64, num9); break;
+    case 9: tft.pushImage(224, 140, 64, 64, num0); break;
   } 
 
   delay(1000);
