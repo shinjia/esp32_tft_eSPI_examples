@@ -1,4 +1,5 @@
 /* clock_pic_1  by Shinjia
+  - v1.1  2024/05/10 --- update LED Brightness
   - v0.1  2024/02/06
 */
 
@@ -192,6 +193,10 @@ void wifi_connect_tft() {
 
 void setup() {
   Serial.begin(115200);
+
+  // 設定 LED 顯示亮度  
+  pinMode(TFT_LED, OUTPUT);
+  analogWrite(TFT_LED, TFT_LED_BRIGHTNESS);
 
   // 先啟動 tft
   tft.init();

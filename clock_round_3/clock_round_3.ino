@@ -1,5 +1,7 @@
-/* clock_round_3 by Shinjia */
-/* V1.0  2024/02/06 */
+/* clock_round_3 by Shinjia
+  - v1.1  2024/05/10 --- update LED Brightness
+  - v1.0  2024/02/06 --- TFT_eSPI Library
+*/
 
 /****** WiFi AP ******/
 #define WLAN_SSID    "Your_Wifi_SSID"
@@ -265,10 +267,10 @@ void wifi_connect_tft() {
 void setup() {
   Serial.begin(115200);
 
-  // 說定 LED 顯示亮度  
+  // 設定 LED 顯示亮度  
   pinMode(TFT_LED, OUTPUT);
   analogWrite(TFT_LED, TFT_LED_BRIGHTNESS);
-  
+
   // TFT 先啟用
   tft.begin();
   tft.fillScreen(TFT_BLUE);   // Clear

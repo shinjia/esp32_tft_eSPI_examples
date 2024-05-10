@@ -1,4 +1,5 @@
 /* colck_pic_prepare by Shinjia
+  - v1.1  2024/05/10 --- update LED Brightness
   - v0.1  2024/02/05
 */
 
@@ -19,6 +20,11 @@
 TFT_eSPI tft = TFT_eSPI();
 
 void setup() {
+
+  // 設定 LED 顯示亮度  
+  pinMode(TFT_LED, OUTPUT);
+  analogWrite(TFT_LED, TFT_LED_BRIGHTNESS);
+
   tft.init();
   tft.setRotation(3);
   tft.setSwapBytes(true);  // 修正位元順序，將 RGB 轉成 BGR (for pushImage)

@@ -1,7 +1,8 @@
-/* clock_round_2 by Shinjia */
-/* V1.0  2024/02/06 */
-
-/* TFT_Clock(a1)  by Shinjia  v1.1  2023/07/20 */
+/* clock_round_2 by Shinjia
+  - v1.1  2024/05/10 --- uplate LED brightness
+  - v1.0  2024/02/06 --- TFT_eSPI Library
+  - old---TFT_Clock(a1)  by Shinjia  v1.1  2023/07/20
+*/
 
 /****** WiFi AP ******/
 #define WLAN_SSID    "Your_Wifi_SSID"
@@ -25,7 +26,6 @@
 #define ss_len      85  // 秒針的長度
 
 /****** 數字時鐘的參數定義 (顏色) ******/
-<<<<<<< HEAD
 #define CC_Outer  TFT_BLACK
 #define CC_Inner  TFT_CYAN
 #define CC_Border TFT_RED
@@ -36,18 +36,6 @@
 #define CC_HH     TFT_BLUE
 #define CC_MM     TFT_NAVY
 #define CC_SS     TFT_BLACK
-=======
-#define CC_Outer  ILI9341_GREEN
-#define CC_Inner  ILI9341_BLACK
-#define CC_Border ILI9341_RED
-#define CC_Dot12  ILI9341_YELLOW
-#define CC_Dot60  ILI9341_WHITE
-#define CC_Dot4   ILI9341_CYAN
-#define CC_Center ILI9341_GREEN
-#define CC_HH     ILI9341_WHITE
-#define CC_MM     ILI9341_WHITE
-#define CC_SS     ILI9341_YELLOW
->>>>>>> f53411fe321edb7b62b44d733e3f3d18e5061730
 
 /***** Timer control (delay) *****/
 int timer_delay_clock = 1000;  // 每秒更新時間
@@ -72,23 +60,9 @@ const int   daylightOffset_sec = 0; // 3600?
 
 // TFT
 #include "SPI.h"
-<<<<<<< HEAD
 #include "TFT_eSPI.h"
 
 TFT_eSPI tft = TFT_eSPI();
-=======
-#include "Adafruit_GFX.h"
-#include "Adafruit_ILI9341.h"
-
-#define TFT_DC   21
-#define TFT_CS   17
-#define TFT_MOSI 23
-#define TFT_CLK  18
-#define TFT_RST  22
-#define TFT_MISO 19
-
-Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC, TFT_MOSI, TFT_CLK, TFT_RST, TFT_MISO);
->>>>>>> f53411fe321edb7b62b44d733e3f3d18e5061730
 
 // 時鐘公用變數
 int hh=0, mm=0, ss=0;  // 時分秒
@@ -191,7 +165,6 @@ void draw_clock_digital() {
 
   tft.setCursor(6, 280);
   tft.setTextSize(2);
-<<<<<<< HEAD
   tft.setTextColor(TFT_WHITE, TFT_BLACK);
   tft.print(StringBuff);  
 
@@ -203,19 +176,6 @@ void draw_clock_digital() {
   tft.drawFastHLine(0, 303, 240, TFT_GREEN);
   tft.drawFastHLine(0, 304, 240, TFT_GREEN);
   tft.drawFastHLine(0, 305, 240, TFT_GREEN);
-=======
-  tft.setTextColor(ILI9341_WHITE, ILI9341_BLACK);
-  tft.print(StringBuff);  
-
-  // draw board
-  tft.drawRect(2, 275, 236, 24, ILI9341_GREEN);
-  tft.drawRect(0, 273, 240, 26, ILI9341_GREEN);
-  tft.drawFastHLine(0, 301, 240, ILI9341_GREEN);
-  tft.drawFastHLine(0, 302, 240, ILI9341_GREEN);
-  tft.drawFastHLine(0, 303, 240, ILI9341_GREEN);
-  tft.drawFastHLine(0, 304, 240, ILI9341_GREEN);
-  tft.drawFastHLine(0, 305, 240, ILI9341_GREEN);
->>>>>>> f53411fe321edb7b62b44d733e3f3d18e5061730
 }
 
 
@@ -246,12 +206,7 @@ void update_time() {
 }
 
 
-<<<<<<< HEAD
 void get_NTP_update_RTC() {
-=======
-void get_NTP_update_RTC()
-{
->>>>>>> f53411fe321edb7b62b44d733e3f3d18e5061730
   configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
 
   struct tm timeinfo;
@@ -282,19 +237,13 @@ void wifi_connect_tft() {
 void setup() {
   Serial.begin(115200);
 
-<<<<<<< HEAD
-  // 說定 LED 顯示亮度  
+  // 設定 LED 顯示亮度  
   pinMode(TFT_LED, OUTPUT);
   analogWrite(TFT_LED, TFT_LED_BRIGHTNESS);
 
   // TFT 先啟用
   tft.begin();
   tft.fillScreen(TFT_BLUE);   // Clear
-=======
-  // TFT 先啟用
-  tft.begin();
-  tft.fillScreen(ILI9341_BLUE);   // Clear
->>>>>>> f53411fe321edb7b62b44d733e3f3d18e5061730
   tft.setRotation(0);
 
   rtc.setTime(30, 24, 15, 17, 1, 2021);  // 亂設
@@ -309,11 +258,7 @@ void setup() {
   timer_next_clock = millis();
   
   // 清除 TFT 畫面
-<<<<<<< HEAD
   tft.fillScreen(TFT_BLACK);   // Clear
-=======
-  tft.fillScreen(ILI9341_BLACK);   // Clear
->>>>>>> f53411fe321edb7b62b44d733e3f3d18e5061730
 
   // 畫出時鐘表面
   draw_clock_face();
@@ -324,12 +269,7 @@ void setup() {
 }
 
 
-<<<<<<< HEAD
 void loop() {
-=======
-void loop()
-{
->>>>>>> f53411fe321edb7b62b44d733e3f3d18e5061730
   // 若尚未取得網路時間
   if(!is_get_NTP) {
     get_NTP_update_RTC();
