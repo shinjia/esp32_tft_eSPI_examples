@@ -1,4 +1,5 @@
-/* clock_round_3 by Shinjia
+/* clock_round_2 by Shinjia
+   - v1.2  2024/09/17 --- 之前被其他程式覆蓋，原舊版程式遺失，重做
    - v1.1  2024/05/09 --- update LED Brightness
    - v1.0  2024/02/06 --- TFT_eSPI Library
    - old---TFT_Clock (a2)  by Shinjia  v1.1  2023/07/20
@@ -9,35 +10,33 @@
 #define WLAN_PASS    "Your_Wifi_Password"
 
 /****** 數字時鐘的參數定義 (長度) ******/
-#define C_xc       100  // 時鐘圓心 x
-#define C_yc       120  // 時鐘圓心 y
-#define C_size     180  // 時鐘的寬高 (直徑)
-#define C_border1   96  // 外圓框(外)
-#define C_border2   84  // 外圓框(內)
-#define C_radius1   88  // 12個點(時)外
-#define C_radius2   76  // 12個點(時)內
-#define C_radius3   84  // 60個點(分)外
-#define C_radius4   78  // 60個點(分)內
-#define C_radius5   86  // 4個點(上下左右)的位置半徑
-#define C_quadrant   6  // 4個點(上下左右)圓半徑
+#define C_xc       120  // 時鐘圓心 x
+#define C_yc       130  // 時鐘圓心 y
+#define C_size     240  // 時鐘的寬高 (直徑)
+#define C_border1  106  // 外圓框(外)
+#define C_border2   94  // 外圓框(內)
+#define C_radius1  108  // 12個點(時)外
+#define C_radius2   90  // 12個點(時)內
+#define C_radius3  100  // 60個點(分)外
+#define C_radius4   95  // 60個點(分)內
+#define C_radius5   98  // 4個點(上下左右)的位置半徑
+#define C_quadrant   4  // 4個點(上下左右)圓半徑
 #define C_center     8  // 時鐘圓心半徑
-#define hh_len      50  // 時針的長度
-#define mm_len      65  // 分針的長度
-#define ss_len      70  // 秒針的長度
-#define hh_trilen    8  // 時針的長度(三角形往外擴)
-#define mm_trilen    6  // 分針的長度(三角形往外擴)
+#define hh_len      60  // 時針的長度
+#define mm_len      80  // 分針的長度
+#define ss_len      85  // 秒針的長度
 
 /****** 數字時鐘的參數定義 (顏色) ******/
-#define CC_Outer  TFT_BLACK
-#define CC_Inner  TFT_CYAN
+#define CC_Outer  TFT_GREEN
+#define CC_Inner  TFT_BLACK
 #define CC_Border TFT_RED
-#define CC_Dot12  TFT_BLUE
-#define CC_Dot60  TFT_BLUE
-#define CC_Dot4   TFT_BLUE
-#define CC_Center TFT_RED
-#define CC_HH     TFT_BLUE
-#define CC_MM     TFT_NAVY
-#define CC_SS     TFT_BLACK
+#define CC_Dot12  TFT_YELLOW
+#define CC_Dot60  TFT_WHITE
+#define CC_Dot4   TFT_CYAN
+#define CC_Center TFT_GREEN
+#define CC_HH     TFT_WHITE
+#define CC_MM     TFT_WHITE
+#define CC_SS     TFT_YELLOW
 
 /***** Timer control (delay) *****/
 int timer_delay_clock = 1000;  // 每秒更新時間
@@ -119,13 +118,10 @@ void draw_clock_pointer() {
   // 注意：鐘面數值的 hh 要用 12 小時制
   float deg_ss, deg_mm, deg_hh;  // 時分秒的角度值
   float x_hh, y_hh, x_mm, y_mm, x_ss, y_ss;  // 時分秒針的頂點位置
-  float x_h3a, y_h3a, x_m3a, y_m3a;
-  float x_h3b, y_h3b, x_m3b, y_m3b;
 
   // 清除前次的指針(時、分、秒)
   deg_ss = ss0*6;                  // 每秒6度
-  // deg_mm = mm0*6 + deg_ss*0.01666667;  // 1/60 (角度含秒)
-  deg_mm = mm0*6;  // 為了避免每秒更新造成的閃礫，放棄秒數的微小角度，如此便可以每分鐘更新一次
+  deg_mm = mm0*6 + deg_ss*0.01666667;  // 1/60 (角度含秒)
   deg_hh = (hh0%12)*30 + deg_mm*0.0833333;  // 1/12 (角度含分及秒)
   
   x_hh = C_xc + hh_len*cos((deg_hh-90)*0.0174532925);    
@@ -134,30 +130,14 @@ void draw_clock_pointer() {
   y_mm = C_yc + mm_len*sin((deg_mm-90)*0.0174532925);
   x_ss = C_xc + ss_len*cos((deg_ss-90)*0.0174532925);    
   y_ss = C_yc + ss_len*sin((deg_ss-90)*0.0174532925);
-  
-  x_h3a = C_xc + hh_trilen*cos((deg_hh-90+90)*0.0174532925);
-  y_h3a = C_yc + hh_trilen*sin((deg_hh-90+90)*0.0174532925);
-  x_h3b = C_xc + hh_trilen*cos((deg_hh-90-90)*0.0174532925);
-  y_h3b = C_yc + hh_trilen*sin((deg_hh-90-90)*0.0174532925);
-  
-  x_m3a = C_xc + mm_trilen*cos((deg_mm-90+90)*0.0174532925);
-  y_m3a = C_yc + mm_trilen*sin((deg_mm-90+90)*0.0174532925);
-  x_m3b = C_xc + mm_trilen*cos((deg_mm-90-90)*0.0174532925);
-  y_m3b = C_yc + mm_trilen*sin((deg_mm-90-90)*0.0174532925);
 
-  // 分的部分有改變時，同時更新分針及時針
-  if(mm0!=mm) {
-    tft.fillTriangle(x_hh, y_hh, x_h3a, y_h3a, x_h3b, y_h3b, CC_Inner);
-    tft.fillTriangle(x_mm, y_mm, x_m3a, y_m3a, x_m3b, y_m3b, CC_Inner);
-  }
-  // tft.drawLine(C_xc, C_yc, x_hh, y_hh, CC_Inner);
-  // tft.drawLine(C_xc, C_yc, x_mm, y_mm, CC_Inner);
+  tft.drawLine(C_xc, C_yc, x_hh, y_hh, CC_Inner);
+  tft.drawLine(C_xc, C_yc, x_mm, y_mm, CC_Inner);
   tft.drawLine(C_xc, C_yc, x_ss, y_ss, CC_Inner);
-  
+
   // 畫出此次的指針(時、分、秒)
   deg_ss = ss*6;                  // 每秒6度
-  // deg_mm = mm*6 + deg_ss*0.01666667;  // 1/60 (角度含秒)
-  deg_mm = mm*6;  // 放棄秒的微小角度
+  deg_mm = mm*6 + deg_ss*0.01666667;  // 1/60 (角度含秒)
   deg_hh = (hh%12)*30 + deg_mm*0.0833333;  // 1/12 (角度含分及秒)
   
   x_hh = C_xc + hh_len*cos((deg_hh-90)*0.0174532925);    
@@ -167,20 +147,8 @@ void draw_clock_pointer() {
   x_ss = C_xc + ss_len*cos((deg_ss-90)*0.0174532925);    
   y_ss = C_yc + ss_len*sin((deg_ss-90)*0.0174532925);
 
-  x_h3a = C_xc + hh_trilen*cos((deg_hh-90+90)*0.0174532925);
-  y_h3a = C_yc + hh_trilen*sin((deg_hh-90+90)*0.0174532925);
-  x_h3b = C_xc + hh_trilen*cos((deg_hh-90-90)*0.0174532925);
-  y_h3b = C_yc + hh_trilen*sin((deg_hh-90-90)*0.0174532925);
-
-  x_m3a = C_xc + mm_trilen*cos((deg_mm-90+90)*0.0174532925);
-  y_m3a = C_yc + mm_trilen*sin((deg_mm-90+90)*0.0174532925);
-  x_m3b = C_xc + mm_trilen*cos((deg_mm-90-90)*0.0174532925);
-  y_m3b = C_yc + mm_trilen*sin((deg_mm-90-90)*0.0174532925);
-
-  tft.fillTriangle(x_hh, y_hh, x_h3a, y_h3a, x_h3b, y_h3b, CC_HH);
-  tft.fillTriangle(x_mm, y_mm, x_m3a, y_m3a, x_m3b, y_m3b, CC_MM);
-//  tft.drawLine(C_xc, C_yc, x_hh, y_hh, CC_HH);
-//  tft.drawLine(C_xc, C_yc, x_mm, y_mm, CC_MM);
+  tft.drawLine(C_xc, C_yc, x_hh, y_hh, CC_HH);
+  tft.drawLine(C_xc, C_yc, x_mm, y_mm, CC_MM);
   tft.drawLine(C_xc, C_yc, x_ss, y_ss, CC_SS);
 
   // 圓心
@@ -192,22 +160,23 @@ void draw_clock_digital() {
   struct tm timeinfo = rtc.getTimeStruct();
   // Serial.println(&timeinfo, "%A, %B %d %Y %H:%M:%S");
 
-  // Draw Digital Clock
+  // Draw Digital Clock  
   char StringBuff[50]; //50 chars should be enough
+  strftime(StringBuff, sizeof(StringBuff), "%Y/%m/%d %H:%M:%S", &timeinfo);
 
-  // line1 (H:i:s)
-  strftime(StringBuff, sizeof(StringBuff), "%H:%M:%S", &timeinfo);
-  tft.setCursor(202, 180);
+  tft.setCursor(6, 280);
   tft.setTextSize(2);
   tft.setTextColor(TFT_WHITE, TFT_BLACK);
-  tft.println(StringBuff);  
-    
-  // line2 (Y/m/d)
-  strftime(StringBuff, sizeof(StringBuff), "%Y/%m/%d", &timeinfo);  
-  tft.setCursor(190, 210);
-  tft.setTextSize(2);
-  tft.setTextColor(TFT_WHITE, TFT_BLACK);
-  tft.println(StringBuff);
+  tft.print(StringBuff);  
+
+  // draw board
+  tft.drawRect(2, 275, 236, 24, TFT_GREEN);
+  tft.drawRect(0, 273, 240, 26, TFT_GREEN);
+  tft.drawFastHLine(0, 301, 240, TFT_GREEN);
+  tft.drawFastHLine(0, 302, 240, TFT_GREEN);
+  tft.drawFastHLine(0, 303, 240, TFT_GREEN);
+  tft.drawFastHLine(0, 304, 240, TFT_GREEN);
+  tft.drawFastHLine(0, 305, 240, TFT_GREEN);
 }
 
 
@@ -268,20 +237,20 @@ void wifi_connect_tft() {
 void setup() {
   Serial.begin(115200);
 
-  // 設定 LED 顯示亮度  
-  pinMode(TFT_LED, OUTPUT);
-  analogWrite(TFT_LED, TFT_LED_BRIGHTNESS);
-  
   // TFT 先啟用
   tft.begin();
   tft.fillScreen(TFT_BLUE);   // Clear
-  tft.setRotation(3);
+  tft.setRotation(0);
 
+  // 有需要，可設定 LED 顯示亮度  
+  // pinMode(TFT_LED, OUTPUT);
+  // analogWrite(TFT_LED, TFT_LED_BRIGHTNESS);
+  
   rtc.setTime(30, 24, 15, 17, 1, 2021);  // 亂設
   
   // Waitting for WiFi connect
   wifi_connect_tft();
-   
+  
   //init and get the time
   get_NTP_update_RTC();
 
